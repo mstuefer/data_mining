@@ -1,14 +1,14 @@
-= DataMining
+# DataMining
 
 DataMining is a little collection of several Data-Mining-Algorithms.
 Since is written in pure ruby and does not depend on any extension,
 it is platform independent.
 
-== Installation
+## Installation
 
   $ gem install data_mining
 
-== Usage
+## Usage
 
   input_data = [[:point1, 1], [:point2, 2], [:point3, 10]]
   radius = 3
@@ -20,7 +20,7 @@ it is platform independent.
 
   dbscan.outliers #gives point3 as outlier
 
-== Contributing
+## Contributing
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
@@ -28,7 +28,7 @@ it is platform independent.
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
-== License
+## License
 
 (The MIT License)
 
