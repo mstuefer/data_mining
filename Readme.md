@@ -10,6 +10,7 @@ it is platform independent.
 
 ## Usage
 
+```ruby
   input_data = [[:point1, 1], [:point2, 2], [:point3, 10]]
   radius = 3
   min_points = 2
@@ -19,6 +20,7 @@ it is platform independent.
   dbscan.clusters #gives 1 cluster found containing point1 and point2
 
   dbscan.outliers #gives point3 as outlier
+```
 
 ## Contributing
 
