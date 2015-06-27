@@ -4,7 +4,7 @@ module DataMining
     # Find clusters and outliers
     #
     # Example:
-    #   >> input      = [[:p1, [1]], [:p2, [2]], [:p3, [10]]]
+    #   >> input      = [[:p1, [1,1]], [:p2, [2,1]], [:p3, [10,11]]]
     #   >> radius     = 3
     #   >> min_points = 2
     #   >> dbscan     = DataMining::DBScan.cluster(input, radius, min_points)
@@ -96,18 +96,20 @@ module DataMining
     end
 
     def neighbors?(p1, p2)
-      raise ArgumentError, 'PointValue has to be an Array of Type Numeric' unless valid_points?(p1.value, p2.value)
-      return true if p1 != p2 && euclidean_distance(p1.value, p2.value).abs <= @radius
+      fail ArgumentError, 'Wrong point coordinates' unless valid_points?(p1, p2)
+      return true if p1 != p2 && euclidean_distance(p1, p2).abs <= @radius
       false
     end
 
     def valid_points?(p1, p2)
-      return false if p1.length != p2.length
-      (p1 + p2).all? { |x| x.is_a? Numeric }
+      return false if p1.value.length != p2.value.length
+      (p1.value + p2.value).all? { |x| x.is_a? Numeric }
     end
 
     def euclidean_distance(p1, p2)
-      Math.sqrt(p1.each_with_index.inject(0) { |sum,(v,i)| sum+((v - p2[i])**2) })
+      p1 = p1.value
+      p2 = p2.value
+      Math.sqrt(p1.each_with_index.inject(0) { |sum, (v, i)| sum + ((v - p2[i])**2) })
     end
   end
 end
