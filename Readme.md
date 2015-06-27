@@ -25,7 +25,15 @@ it is platform independent.
 #### For Density Based Clustering
 
 ```ruby
-  input_data = [[:point1, 1], [:point2, 2], [:point3, 10]]
+  #
+  # Point with id 'point1', x-value 1 and y-value 2:
+  # [:point1, [1, 2]]
+  #
+  input_data = [
+                [:point1, [1,2]],
+                [:point2, [2,1]],
+                [:point3, [10,10]]
+               ]
   radius = 3
   min_points = 2
   dbscan = DataMining::DBScan.cluster(input_data, radius, min_points)
