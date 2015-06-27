@@ -6,14 +6,15 @@ it is platform independent.
 
 ## Alogrithms
 
-### Already implemented
+#### Already implemented
 1. Density Based Clustering (DBSCAN)
 
-### Coming soon
+#### Coming soon
 2. Apriori
 3. k-Means
 4. k-Nearest Neighbor Classifier
-4. Naive Bayes
+5. Naive Bayes
+6. ...
 
 ## Installation
 
