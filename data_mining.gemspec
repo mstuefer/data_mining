@@ -9,6 +9,6 @@ Gem::Specification.new do |s|
   s.files       = [ "lib/data_mining.rb",
                     "lib/data_mining/dbscan.rb",
                     "lib/data_mining/point.rb" ]
-  s.homepage    = 'http://rubygems.org/gems/data_mining'
+  s.homepage    = 'https://github.com/mstuefer/data_mining'
   s.license     = 'MIT'
 end

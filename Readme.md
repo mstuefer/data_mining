@@ -22,7 +22,7 @@ it is platform independent.
 
 ## Usage
 
-### Density Based Clustering
+#### For Density Based Clustering
 
 ```ruby
   input_data = [[:point1, 1], [:point2, 2], [:point3, 10]]
