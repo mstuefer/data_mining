@@ -7,7 +7,7 @@ module DataMining
     #
     # Arguments:
     #   id: (symbol)
-    #   value: (integer)
+    #   value: (array)
 
     def initialize(id, value)
       @id             = id

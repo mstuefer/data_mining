@@ -1,7 +1,6 @@
-require 'minitest/autorun'
-require 'data_mining'
+require 'test_helper'
 
-class DataMining::DBScanTest < MiniTest::Test
+class DataMining::DBScanTest < MiniTest::Unit::TestCase
   def setup
     @input      = []
     @input << [[:p1, [1]], [:p2, [2]], [:p3, [10]], [:p4, [12]]]
