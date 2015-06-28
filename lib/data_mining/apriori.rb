@@ -4,7 +4,7 @@ module DataMining
     attr_reader :results
 
     def initialize(transactions, minimum_support)
-      @transactions = transactions.select { |t| t.flatten! }.each { |t| t.delete_at(0) }
+      @transactions = transactions.select(&:flatten!).each { |t| t.delete_at(0) }
       @min_support  = minimum_support
       @results      = {}
     end
@@ -16,8 +16,9 @@ module DataMining
     private
 
     def apriori
-      tmp, i = starting_set, 1
-      while tmp.size > 0 do
+      tmp = starting_set
+      i   = 1
+      while tmp.size > 0
         @results[i] = tmp
         i += 1
         tmp = next_set(tmp)
@@ -28,7 +29,7 @@ module DataMining
       @transactions.inject(Hash.new(0)) do |hash, sets|
         sets.each { |item| hash[item] += 1 }
         hash
-      end.reject { |k, v| v < @min_support}.keys.sort.map { |i| [i] }
+      end.reject { |_, v| v < @min_support }.keys.sort.map { |i| [i] }
     end
 
     def next_set(itemsets)
@@ -44,13 +45,13 @@ module DataMining
     def possible_candidates(itemset, itemsets)
       arr = []
       for set in itemsets
-        arr.push(itemset+[set.last]) if set.last > itemset.last
+        arr.push(itemset + [set.last]) if set.last > itemset.last
       end
       arr.uniq
     end
 
     def satisfies_min_sup(candidate)
-      return true if( @transactions.inject(0) do |counter,entry|
+      return true if (@transactions.inject(0) do |counter, entry|
         counter += 1 if (candidate - entry).empty?
         counter
       end >= @min_support)
