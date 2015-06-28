@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class DataMining::AprioriTest < MiniTest::Unit::TestCase
+class DataMining::AprioriTest < MiniTest::Test
   def setup
     @transactions = []
     @transactions << [:transaction1, [:prod_a, :prod_b, :prod_e]]
@@ -21,9 +21,9 @@ class DataMining::AprioriTest < MiniTest::Unit::TestCase
   end
 
   def test_correct_amount_of_itemsets
-    assert_equal 5, @result[1].size
-    assert_equal 6, @result[2].size
-    assert_equal 2, @result[3].size
+    assert_equal 5, @result.results[1].size
+    assert_equal 6, @result.results[2].size
+    assert_equal 2, @result.results[3].size
   end
 
 end

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class DataMining::DBScanTest < MiniTest::Unit::TestCase
+class DataMining::DBScanTest < MiniTest::Test
   def setup
     @input      = []
     @input << [[:p1, [1]], [:p2, [2]], [:p3, [10]], [:p4, [12]]]
