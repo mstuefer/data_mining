@@ -16,7 +16,8 @@ class DataMining::AprioriTest < MiniTest::Unit::TestCase
     @min_support  = 2
 
     # { 1=>[[:prod_x],[:prod_y]], 2=>[[:prod_x, :prod_y]] }
-    @result = DataMining::Apriori.mine!(@transactions, @min_support)
+    @result = DataMining::Apriori.new(@transactions, @min_support)
+    @result.mine!
   end
 
   def test_correct_amount_of_itemsets

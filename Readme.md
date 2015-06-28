@@ -36,8 +36,8 @@ it is platform independent.
                ]
   radius = 3
   min_points = 2
-  dbscan = DataMining::DBScan.cluster(input_data, radius, min_points)
-  dbscan.build!
+  dbscan = DataMining::DBScan.new(input_data, radius, min_points)
+  dbscan.cluster!
 
   dbscan.clusters #gives 1 cluster found containing point1 and point2
 

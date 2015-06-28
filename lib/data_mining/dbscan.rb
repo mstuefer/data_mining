@@ -1,5 +1,5 @@
 module DataMining
-  # Density-Based clustering / Outlier-Detection Algorithu
+  # Density-Based clustering / Outlier-Detection Algorithm
   class DBScan
     # Find clusters and outliers
     #
@@ -18,11 +18,6 @@ module DataMining
     #   data: (array of arrays, like [[:id, value], [:id2, value2]]
     #   radius: (integer)
     #   min_points: (integer)
-
-    def self.cluster(data, radius, min_points)
-      DBScan.new(data, radius, min_points)
-    end
-
     def initialize(data, radius, min_points)
       @data               = data.map { |i, v| DataMining::Point.new(i, v) }
       @radius             = radius
@@ -32,7 +27,7 @@ module DataMining
       @unvisited_points   = @data.shuffle
     end
 
-    def build!
+    def cluster!
       dbscan
       clusters
     end

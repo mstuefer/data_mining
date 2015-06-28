@@ -10,8 +10,8 @@ class DataMining::DBScanTest < MiniTest::Unit::TestCase
     @radius     = 2
     @min_points = 2
 
-    @input.map! { |i| DataMining::DBScan.cluster(i, @radius, @min_points) }
-    @input.map(&:build!)
+    @input.map! { |i| DataMining::DBScan.new(i, @radius, @min_points) }
+    @input.map(&:cluster!)
   end
 
   def test_correct_amount_of_clusters_found
