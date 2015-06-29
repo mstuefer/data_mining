@@ -12,10 +12,8 @@ class DataMining::AprioriTest < MiniTest::Test
     @transactions << [:transaction7, [:prod_a, :prod_c]]
     @transactions << [:transaction8, [:prod_a, :prod_b, :prod_c, :prod_e]]
     @transactions << [:transaction9, [:prod_a, :prod_b, :prod_c]]
-
     @min_support  = 2
 
-    # { 1=>[[:prod_x],[:prod_y]], 2=>[[:prod_x, :prod_y]] }
     @result = DataMining::Apriori.new(@transactions, @min_support)
     @result.mine!
   end
@@ -24,6 +22,10 @@ class DataMining::AprioriTest < MiniTest::Test
     assert_equal 5, @result.results[1].size
     assert_equal 6, @result.results[2].size
     assert_equal 2, @result.results[3].size
+  end
+
+  def test_correct_associations
+    assert_equal [[:prod_a, :prod_b, :prod_c], [:prod_a, :prod_b, :prod_e]], @result.results[3]
   end
 
 end

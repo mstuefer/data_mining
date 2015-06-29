@@ -4,7 +4,7 @@ module DataMining
     attr_reader :results
 
     def initialize(transactions, minimum_support)
-      @transactions = transactions.select(&:flatten!).each { |t| t.delete_at(0) }
+      @transactions = transactions.select(&:flatten!).each(&:shift)
       @min_support  = minimum_support
       @results      = {}
     end
@@ -26,28 +26,27 @@ module DataMining
     end
 
     def starting_set
-      @transactions.inject(Hash.new(0)) do |hash, sets|
+      frequent_items.reject { |_, v| v < @min_support }.keys.sort.map { |i| [i] }
+    end
+
+    def frequent_items
+      @transactions.each_with_object(Hash.new(0)) do |sets, hash|
         sets.each { |item| hash[item] += 1 }
-        hash
-      end.reject { |_, v| v < @min_support }.keys.sort.map { |i| [i] }
+      end
     end
 
     def next_set(itemsets)
-      arr = []
-      for set in itemsets
-        for candidate in possible_candidates(set, itemsets)
+      itemsets.each_with_object([]) do |set, arr|
+        possible_candidates(set, itemsets).each do |candidate|
           arr.push(candidate) if satisfies_min_sup(candidate)
         end
       end
-      arr
     end
 
     def possible_candidates(itemset, itemsets)
-      arr = []
-      for set in itemsets
+      itemsets.each_with_object([]) do |set, arr|
         arr.push(itemset + [set.last]) if set.last > itemset.last
-      end
-      arr.uniq
+      end.uniq
     end
 
     def satisfies_min_sup(candidate)

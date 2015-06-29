@@ -8,9 +8,9 @@ it is platform independent.
 
 #### Already implemented
 1. Density Based Clustering (DBSCAN)
+2. Apriori
 
 #### Coming soon
-2. Apriori
 3. k-Means
 4. k-Nearest Neighbor Classifier
 5. Naive Bayes
@@ -39,9 +39,31 @@ it is platform independent.
   dbscan = DataMining::DBScan.new(input_data, radius, min_points)
   dbscan.cluster!
 
-  dbscan.clusters #gives 1 cluster found containing point1 and point2
+  dbscan.clusters # gives 1 cluster found containing point1 and point2
 
-  dbscan.outliers #gives point3 as outlier
+  dbscan.outliers # gives point3 as outlier
+```
+
+#### For Apriori
+
+```ruby
+  transactions = [
+                    [:transaction1, [:product_a, :product_b, :product_e]],
+                    [:transaction2, [:product_b, :product_d]],
+                    [:transaction3, [:product_b, :product_c]],
+                    [:transaction4, [:product_a, :product_b, :product_d]]
+                  ]
+  min_support  = 2
+  apriori      = DataMining::Apriori.new(transactions, min_support)
+  apriori.mine!
+
+  apriori.results
+  # gives the following hash:
+  # => { 1=>[[:product_a], [:product_b], [:product_d]],
+  #      2=>[[:product_a, :product_b], [:product_b, :product_d]] }
+  # where the key 1, holds an array of all single items which satisfy the min_support
+  # key 2, holds an array of all pair items satisfying the min_support
+  # and so on as long as min_support is satisified.
 ```
 
 ## Contributing
