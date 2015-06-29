@@ -25,6 +25,8 @@ it is platform independent.
 #### For Density Based Clustering
 
 ```ruby
+  require 'data_mining'
+
   #
   # Point with id 'point1', x-value 1 and y-value 2:
   # [:point1, [1, 2]]
@@ -47,6 +49,8 @@ it is platform independent.
 #### For Apriori
 
 ```ruby
+  require 'data_mining'
+
   transactions = [
                     [:transaction1, [:product_a, :product_b, :product_e]],
                     [:transaction2, [:product_b, :product_d]],
