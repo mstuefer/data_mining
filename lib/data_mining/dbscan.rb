@@ -78,11 +78,10 @@ module DataMining
       fill_current_cluster(neighborhood) if core_object?(neighborhood)
     end
 
-    # use map instead of each?
     def get_neighborhood(point)
-      neighborhood = []
-      @data.each { |p| neighborhood << p if neighbors?(p, point) }
-      neighborhood
+      @data.each_with_object([]) do |p, neighborhood|
+        neighborhood << p if neighbors?(p, point)
+      end
     end
 
     def core_object?(neighborhood)
