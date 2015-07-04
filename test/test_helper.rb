@@ -1,6 +1,7 @@
 require 'simplecov'
 SimpleCov.start
 require 'data_mining'
+require 'data_mining/page_rank'
 require 'minitest/autorun'
 require 'minitest/reporters'
 

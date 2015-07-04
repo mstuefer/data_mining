@@ -19,7 +19,7 @@ module DataMining
     end
 
     def item_sets_size(size)
-      @results[size-1]
+      @results[size - 1]
     end
 
     private
