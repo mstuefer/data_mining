@@ -62,12 +62,19 @@ it is platform independent.
   apriori.mine!
 
   apriori.results
-  # gives the following hash:
-  # => { 1=>[[:product_a], [:product_b], [:product_d]],
-  #      2=>[[:product_a, :product_b], [:product_b, :product_d]] }
-  # where the key 1, holds an array of all single items which satisfy the min_support
-  # key 2, holds an array of all pair items satisfying the min_support
-  # and so on as long as min_support is satisified.
+  # gives the following array:
+  # => [ [[:product_a], [:product_b], [:product_d]],
+  #      [[:product_a, :product_b], [:product_b, :product_d]]
+  #    ]
+  # where position 0 in the array, holds an array of all single items which
+  # satisfy the min_support. position 1, holds an array of all pair items
+  # satisfying the min_support and so on as long as min_support is satisified.
+
+  # Perhaps an easier way to get an item_set immediately:
+  apriori.item_sets_size(2)
+  # gives the following array, representing all item sets of size two, satisfying
+  # the min_support:
+  # [[:product_a, :product_b], [:product_b, :product_d]]
 ```
 
 ## Contributing

@@ -1,28 +1,32 @@
 module DataMining
   # Apriori Algorithm for frequent set mining and association rule learning
   class Apriori
+    # Find frequent item sets
+    #
+    # Arguments:
+    #   transactions: (array of arrays, like [[:id, [transactions]] .. ])
+    #   minimum_support: (integer)
     attr_reader :results
 
     def initialize(transactions, minimum_support)
       @transactions = transactions.select(&:flatten!).each(&:shift)
       @min_support  = minimum_support
-      @results      = {}
+      @results      = []
     end
 
     def mine!
       apriori
     end
 
+    def item_sets_size(size)
+      @results[size-1]
+    end
+
     private
 
     def apriori
-      tmp = starting_set
-      i   = 1
-      while tmp.size > 0
-        @results[i] = tmp
-        i += 1
-        tmp = next_set(tmp)
-      end
+      @results << starting_set
+      @results << next_set(@results.last) until @results.last.empty?
     end
 
     def starting_set
@@ -38,14 +42,14 @@ module DataMining
     def next_set(itemsets)
       itemsets.each_with_object([]) do |set, arr|
         possible_candidates(set, itemsets).each do |candidate|
-          arr.push(candidate) if satisfies_min_sup(candidate)
+          arr << candidate if satisfies_min_sup(candidate)
         end
       end
     end
 
     def possible_candidates(itemset, itemsets)
       itemsets.each_with_object([]) do |set, arr|
-        arr.push(itemset + [set.last]) if set.last > itemset.last
+        arr << (itemset + [set.last]) if set.last > itemset.last
       end.uniq
     end
 

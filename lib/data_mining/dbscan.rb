@@ -3,19 +3,8 @@ module DataMining
   class DBScan
     # Find clusters and outliers
     #
-    # Example:
-    #   >> input      = [[:p1, [1,1]], [:p2, [2,1]], [:p3, [10,11]]]
-    #   >> radius     = 3
-    #   >> min_points = 2
-    #   >> dbscan     = DataMining::DBScan.cluster(input, radius, min_points)
-    #   >> dbscan.build!
-    #   >>
-    #   >> dbscan.clusters # gives array of clusters found (:p1, :p2)
-    #   >>
-    #   >> dbscan.outliers # gives array of outliers found (:p3)
-    #
     # Arguments:
-    #   data: (array of arrays, like [[:id, value], [:id2, value2]]
+    #   data: (array of arrays, like [[:id, value], [:id2, value2]])
     #   radius: (integer)
     #   min_points: (integer)
     def initialize(data, radius, min_points)
@@ -29,7 +18,6 @@ module DataMining
 
     def cluster!
       dbscan
-      clusters
     end
 
     def outliers

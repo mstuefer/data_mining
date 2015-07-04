@@ -19,13 +19,21 @@ class DataMining::AprioriTest < MiniTest::Test
   end
 
   def test_correct_amount_of_itemsets
-    assert_equal 5, @result.results[1].size
-    assert_equal 6, @result.results[2].size
-    assert_equal 2, @result.results[3].size
+    assert_equal 5, @result.results[0].size
+    assert_equal 6, @result.results[1].size
+    assert_equal 2, @result.results[2].size
+    assert_equal 0, @result.results[3].size
+
+    assert_equal 5, @result.item_sets_size(1).size
+    assert_equal 0, @result.item_sets_size(4).size
+
+    assert_nil      @result.results[4]
+    assert_nil      @result.item_sets_size(5)
   end
 
   def test_correct_associations
-    assert_equal [[:prod_a, :prod_b, :prod_c], [:prod_a, :prod_b, :prod_e]], @result.results[3]
+    assert_equal [[:prod_a, :prod_b, :prod_c], [:prod_a, :prod_b, :prod_e]], @result.results[2]
+    assert_equal [[:prod_a, :prod_b, :prod_c], [:prod_a, :prod_b, :prod_e]], @result.item_sets_size(3)
   end
 
 end
