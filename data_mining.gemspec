@@ -15,4 +15,5 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency "minitest", "~> 5.7"
   s.add_development_dependency "minitest-reporters", "~> 1.0"
+  s.add_development_dependency "simplecov", "~> 0.10"
 end
