@@ -9,12 +9,13 @@ it is platform independent.
 #### Already implemented
 1. Density Based Clustering (DBSCAN)
 2. Apriori
+3. PageRank
 
 #### Coming soon
-3. k-Means
-4. k-Nearest Neighbor Classifier
-5. Naive Bayes
-6. ...
+4. k-Means
+5. k-Nearest Neighbor Classifier
+6. Naive Bayes
+7. ...
 
 ## Installation
 
