@@ -8,7 +8,7 @@ module DataMining
     #   graph: (array of arrays, like:
     #     [[:p1, [:p2]], [:p2, [:p1, :p3]], [:p3, [:p2]]]
     #   damping_factor: (double between 0 and 1)
-    def initialize(graph, damping_factor = 0.85)
+    def initialize(graph, damping_factor = 0.85, iterations = 100)
       @graph      = graph.to_h
       # { :p1 => [:p2], :p2 => [:p1,:p3], :p3 => [:p2] }
       @outlinks   = Hash.new { |_, key| @graph[key].size }
@@ -19,7 +19,7 @@ module DataMining
       # { :p1 => 1/3, :p2 => 1/3, ... }
 
       @damper     = damping_factor
-      @iterations = 100
+      @iterations = iterations
     end
 
     def rank!
@@ -38,12 +38,12 @@ module DataMining
 
     def next_state
       @graph.each_with_object({}) do |(node, _), ranks|
-        ranks[node] = term + @damper * sum_incoming_scores(@inlinks[node])
+        ranks[node] = term + @damper * sum_incoming_scores(node)
       end
     end
 
-    def sum_incoming_scores(in_links)
-      in_links.map { |id| @ranks[id] / @outlinks[id] }.inject(:+).to_f
+    def sum_incoming_scores(node)
+      @inlinks[node].map { |id| @ranks[id] / @outlinks[id] }.inject(:+).to_f
     end
 
     def term

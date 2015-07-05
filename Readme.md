@@ -81,7 +81,28 @@ it is platform independent.
 #### For PageRank
 
 ```ruby
-  # coming soon
+  require 'data_mining'
+
+  graph   = [
+              [:node_1, [:node_2]],
+              [:node_2, [:node_1, :node_3]],
+              [:node_3, [:node_2]]
+            ]
+
+  pagerank  = DataMining::PageRank.new(graph)
+  # we can also pass a damping factor, default is 0.85
+  # DataMining::PageRank.new(graph, 0.90)
+  # as well as the iterations to calculate the pagerank, default
+  # is 100
+  # DataMining::PageRank.new(graph, 0.85, 1000)
+  pagerank.rank!
+
+  pagerank.ranks
+  # gives the following hash:
+  # => {:node_1 => 0.2567567634554257, :node_2 => 0.4864864730891484,
+  #     :node_3 => 0.2567567634554257}
+  # where the key stays for the node and the value for the calculated
+  # pagerank
 ```
 
 ## Contributing
