@@ -78,6 +78,12 @@ it is platform independent.
   # [[:product_a, :product_b], [:product_b, :product_d]]
 ```
 
+#### For PageRank
+
+```ruby
+  # coming soon
+```
+
 ## Contributing
 
 1. Fork it

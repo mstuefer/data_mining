@@ -43,7 +43,7 @@ module DataMining
     end
 
     def sum_incoming_scores(in_links)
-      in_links.map { |id| @ranks[id] / @outlinks[id] }.inject(:+)
+      in_links.map { |id| @ranks[id] / @outlinks[id] }.inject(:+).to_f
     end
 
     def term
