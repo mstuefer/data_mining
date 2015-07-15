@@ -17,6 +17,8 @@ module DataMining
       # { :p1 => [:p2], :p2 => [:p1,:p3], :p3 => [:p2] }
       @ranks      = Hash.new(1.0 / @graph.size)
       # { :p1 => 1/3, :p2 => 1/3, ... }
+      @sinknodes  = @graph.select { |_, v| v.empty? }.keys
+      # sinknodes aka dead-ends, have no outlink at all
 
       @damper     = damping_factor
       @iterations = iterations
@@ -47,7 +49,11 @@ module DataMining
     end
 
     def term
-      @term ||= ((1 - @damper) / @graph.size)
+      ((1 - @damper + @damper * pagerank_of_sinknodes) / @graph.size)
+    end
+
+    def pagerank_of_sinknodes
+      @ranks.select { |k, _| @sinknodes.include?(k) }.values.inject(:+).to_f
     end
   end
 end
