@@ -3,7 +3,7 @@ module DataMining
   class Point
     attr_reader :id, :value
 
-    # Represents a Point for the DBScan Algorithm
+    # Represents a Point
     #
     # Arguments:
     #   id: (symbol)

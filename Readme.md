@@ -10,12 +10,12 @@ it is platform independent.
 1. Density Based Clustering (DBSCAN)
 2. Apriori
 3. PageRank
+4. k-Nearest Neighbor Classifier
 
 #### Coming soon
 4. k-Means
-5. k-Nearest Neighbor Classifier
-6. Naive Bayes
-7. ...
+5. Naive Bayes
+6. ...
 
 ## Installation
 
@@ -103,6 +103,34 @@ it is platform independent.
   #     :node_3 => 0.2567567634554257}
   # where the key stays for the node and the value for the calculated
   # pagerank
+```
+
+#### For K-Nearest Neighbor Classifier
+
+```ruby
+  require 'data_mining'
+
+  data  = [
+            [:class_1, [1, 1]],
+            [:class_1, [2, 2]],
+            [:class_2, [10, 10]],
+            [:class_2, [11, 12]],
+            [:class_3, [12, 12]]
+          ]
+  k     = 2
+
+  knn   = DataMining::KNearestNeighbor.new(data, k)
+
+  knn.classify([:unknown_class, [2, 3]]) # gives :class_1 back
+
+  # Since the given point of :unknown_class has the coordinates
+  # (2, 3) for (x, y) and has therefore the following two points
+  # as his 2 (k=2) nearest neighbors:
+  #   [:class_1, [1, 1]]
+  #   [:class_1, [2, 2]]
+  #
+  # And since all neighbors are of the same class (:class_1), the
+  # majority of the k-nearest-neighbor classes is obviously also :class_1
 ```
 
 ## Contributing
