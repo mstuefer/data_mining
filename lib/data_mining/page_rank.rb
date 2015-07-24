@@ -39,8 +39,9 @@ module DataMining
     end
 
     def next_state
+      current_term = term
       @graph.each_with_object({}) do |(node, _), ranks|
-        ranks[node] = term + @damper * sum_incoming_scores(node)
+        ranks[node] = current_term + @damper * sum_incoming_scores(node)
       end
     end
 
@@ -53,6 +54,7 @@ module DataMining
     end
 
     def pagerank_of_sinknodes
+      return 0 if @sinknodes.empty?
       @ranks.select { |k, _| @sinknodes.include?(k) }.values.inject(:+).to_f
     end
   end

@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'data_mining'
-  s.version     = '0.0.4'
-  s.date        = '2015-06-23'
+  s.version     = '0.0.6'
+  s.date        = '2015-07-24'
   s.summary     = "Data-Mining-Algorithms"
   s.description = "A collection of data mining algorithms"
   s.authors     = ["Manuel Stuefer"]
