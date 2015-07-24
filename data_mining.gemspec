@@ -10,7 +10,9 @@ Gem::Specification.new do |s|
                     "lib/data_mining/dbscan.rb",
                     "lib/data_mining/point.rb",
                     "lib/data_mining/apriori.rb",
-                    "lib/data_mining/page_rank.rb" ]
+                    "lib/data_mining/page_rank.rb",
+                    "lib/data_mining/euclidean_distance.rb",
+                    "lib/data_mining/knn.rb" ]
   s.homepage    = 'https://github.com/mstuefer/data_mining'
   s.license     = 'MIT'
 
