@@ -1,3 +1,4 @@
+# A little collection of several Data-Mining-Algorithms
 module DataMining
 end
 

@@ -87,7 +87,6 @@ module DataMining
       return false if p1.value.length != p2.value.length
       (p1.value + p2.value).all? { |x| x.is_a? Numeric }
     end
-
   end
 end
 
